@@ -1,0 +1,10 @@
+nav{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 10vh;
+    background: rgb(rgb(78, 76, 76), green, blue);
+    color: white;
+  }
+
+
