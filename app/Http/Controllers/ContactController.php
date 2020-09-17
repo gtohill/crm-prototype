@@ -53,7 +53,10 @@ class ContactController extends Controller
             );
 
             $company->contacts()->save($contact);
-            return "Saved";
+            return redirect()->action(
+                'CompanyController@show',
+                [$company]
+            );
         }
         else{
             return "Error";
@@ -69,9 +72,11 @@ class ContactController extends Controller
     public function show($id)
     {   
         $contact = Contact::findorfail($id);
+        $contact->company;
         $contact->tasks;                       
-                
-        return response()->json($contact); 
+              
+        return view('dashboard.contact')->with(['contact'=>$contact]);
+        //return response()->json($contact); 
     }
 
     /**
@@ -83,6 +88,10 @@ class ContactController extends Controller
     public function edit($id)
     {
         //
+        $item = Contact::findOrFail($id);
+        $item->company;
+
+        return view('dashboard.editcontact')->with(['editcontact'=>$item]);
     }
 
     /**
@@ -92,9 +101,19 @@ class ContactController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Contact $contact)
     {
-        //
+        $contact->update(request()->validate([
+            'first_name'=> 'required',
+            'last_name'=> 'required',
+            'phone'=> 'required',
+            'email'=> 'required'
+        ]));
+        
+        return redirect()->action(
+            'ContactController@show',
+            [$contact->id]
+        );
     }
 
     /**
@@ -106,5 +125,19 @@ class ContactController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * create new contact that belongs to specific company.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function createcontact($id)    
+    {       
+        $company = Company::findOrFail($id);        
+
+        return view('dashboard.createcontact')->with(['company'=>$company]);
+        //return response()->json($company);
     }
 }

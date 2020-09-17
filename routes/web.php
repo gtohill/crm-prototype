@@ -21,15 +21,32 @@ Auth::routes();
 //Route::get('/home', 'HomeController@index')->name('home');
 
 /** Standard Routes */
-Route::resource('home', 'CompanyController');
 
-/* API */
-Route::resource('api/company', 'CompanyController');
-Route::resource('api/contact', 'ContactController');
-Route::resource('api/task', 'TaskController');
+/** Dashboard */
+Route::get('dashboard', 'DashboardController@dashboard');
+Route::get('dashboard/companies', 'DashboardController@companies');
+Route::get('dashboard/tasks', 'DashboardController@tasks');
 
-/* API for combined actions */
-Route::get('api/company/{id}/contact', 'CompanyContactController@company_details');
-Route::get('api/company/{company_id}/contact/{id}', 'CompanyContactController@contact_details');
-Route::get('api/company/{company_id}/contact/{contact_id}/task/{id}', 'CompanyContactController@task_details');
+/** Companies */
+Route::resource('/dashboard/company', 'CompanyController');
+/** Tasks */
+Route::resource('/dashboard/company/task', 'TaskController');
+Route::get('/dashboard/company/task/createtask/{id}', 'TaskController@createtask');
+
+
+/** Contacts */
+Route::resource('/dashboard/company/contact', 'ContactController');
+Route::get('/dashboard/company/contact/createcontact/{id}', 'ContactController@createcontact');
+
+
+
+// /* API */
+// Route::resource('api/company', 'CompanyController');
+// Route::resource('api/contact', 'ContactController');
+// Route::resource('api/task', 'TaskController');
+
+// /* API for combined actions */
+// Route::get('api/company/{id}/contact', 'CompanyContactController@company_details');
+// Route::get('api/company/{company_id}/contact/{id}', 'CompanyContactController@contact_details');
+// Route::get('api/company/{company_id}/contact/{contact_id}/task/{id}', 'CompanyContactController@task_details');
 

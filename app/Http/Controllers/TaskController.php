@@ -45,7 +45,7 @@ class TaskController extends Controller
      */
     public function create()
     {
-        //
+        //      
     }
 
     /**
@@ -64,9 +64,17 @@ class TaskController extends Controller
             'status' => request('status')
         ]);
 
-        $contact->tasks()->save($task);        
+        $contact->tasks()->save($task);
 
-        return response()->json($contact->tasks);
+        $company = Company::findOrFail($contact->company_id);
+        $company->tasks()->save($task);
+
+        return redirect()->action(
+            'ContactController@show',
+            [$contact->id]
+        );
+
+        //return response()->json($contact->tasks);
     }
 
     /**
@@ -77,12 +85,12 @@ class TaskController extends Controller
      */
     public function show($id)    
     {
-        $task = Task::findorfail($id);
-        $contact = Contact::findorfail($task->contact_id);
-        $company = Company::findorfail($contact->company_id);
-        $item = ['name'=>$company['name'], 'first_name'=>$contact['first_name'],'last_name'=>$contact['last_name'],'phone'=>$contact['phone'],'email'=>$contact['email'] ,'id'=>$task['id'], 'due_date'=>$task['due_date'], 'description'=>$task['description'], 'status'=>$task['status']];
-        
-        return response()->json($item); 
+        $task = Task::findOrFail($id);
+        $task->contact;
+        $task->company;
+
+        return view('dashboard.task')->with(['item'=>$task]);
+       
     }
 
     /**
@@ -114,7 +122,11 @@ class TaskController extends Controller
         $task->status = request('status');
         $task->save();
 
-        return response()->json($task);
+        $updated_task = Task::findOrFail($id);
+        $updated_task->contact;
+        $updated_task->company;
+
+        return view('dashboard.task')->with(['item'=>$updated_task])->with(['message'=>'Success! Task Completed.']);
     }
 
     /**
@@ -129,5 +141,18 @@ class TaskController extends Controller
 
         return "Task Deleted";
         
+    }
+    /**
+     * create new task that belongs to specific contact and company.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function createtask($id)    
+    {       
+        $contact = Contact::findOrFail($id);
+        $contact->company;
+        //return response()->json($company);
+        return view('dashboard.createtask')->with(['createtask'=>$contact]);
     }
 }

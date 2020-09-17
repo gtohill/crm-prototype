@@ -31,6 +31,7 @@ class CompanyController extends Controller
     public function create()
     {
         //
+        return view('dashboard.createcompany');
     }
 
     /**
@@ -69,13 +70,10 @@ class CompanyController extends Controller
     {
         $company = Company::findorfail($id);
         $contacts =  DB::table('contacts')->where('company_id', '=', $id)->get();
-        $tasks = DB::table('tasks')->where('company_id', '=', $id)->get();
-        // $co = $company;
-        // $contacts = $company->contacts;
-        // $tasks = $company->tasks;
-        // $company->contacts;
-        // $company->tasks;
-        return response()->json([$company, $contacts, $tasks]);         
+        $opentasks = DB::table('tasks')->where('company_id', '=', $id)->where('status', '=', 0)->get();
+        $completedtasks = DB::table('tasks')->where('company_id', '=', $id)->where('status', '=', 1)->get();
+
+        return view('dashboard.company')->with(['company'=>$company])->with(['contacts'=>$contacts])->with(['opentasks'=>$opentasks])->with(['completedtasks'=>$completedtasks]);        
        
     }
 
@@ -85,9 +83,10 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Company $company)
+    public function edit($id)
     {
-       //
+       $company = Company::findOrFail($id);
+       return view('dashboard.editcompany')->with(['company'=>$company]);
 
     }
 
@@ -98,21 +97,35 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Company $company)
     {
-        $company = Company::findOrFail($id);
+        $company->update(request()->validate([
+            'name'=> 'required',
+            'address'=> 'required',
+            'city'=> 'required',
+            'prov'=> 'required',
+            'pc'=> 'required',
+            'phone'=> 'required',
+            'url'=> 'required'
+        ]));
+        
+        return redirect()->action(
+            'CompanyController@show',
+            [$company->id]
+        );
+        // $company = Company::findOrFail($id);
 
-        $company->name = request('name');
-        $company->address = request('address');
-        $company->city = request('city');
-        $company->prov = request('prov');
-        $company->pc = request('pc');
-        $company->url = request('url');
-        $company->phone = request('phone');
+        // $company->name = request('name');
+        // $company->address = request('address');
+        // $company->city = request('city');
+        // $company->prov = request('prov');
+        // $company->pc = request('pc');
+        // $company->url = request('url');
+        // $company->phone = request('phone');
 
-        $company->save();
+        // $company->save();
 
-        return response()->json($company);
+       
 
     }
 
