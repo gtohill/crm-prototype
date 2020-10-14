@@ -18,6 +18,7 @@
         @yield('contact')
         @yield('edit_contact')
         @yield('edit_company')
+        @yield('query_results')
     </div>
 </div>
 

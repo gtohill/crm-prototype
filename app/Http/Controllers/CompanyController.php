@@ -45,10 +45,7 @@ class CompanyController extends Controller
         $company = new Company(
             [                    
                 'name' => request('name'),
-                'address' => request('address'),
-                'city' => request('city'),
-                'prov' => request('prov'),
-                'pc' => request('pc'),
+                'address' => request('address'),                
                 'phone' => request('phone'),
                 'url' => request('url'),
             ]
@@ -56,7 +53,7 @@ class CompanyController extends Controller
 
         $company->save();
 
-        return response()->json($company);
+        return redirect()->action('CompanyController@show', $company);
 
     }
 
@@ -101,10 +98,7 @@ class CompanyController extends Controller
     {
         $company->update(request()->validate([
             'name'=> 'required',
-            'address'=> 'required',
-            'city'=> 'required',
-            'prov'=> 'required',
-            'pc'=> 'required',
+            'address'=> 'required',           
             'phone'=> 'required',
             'url'=> 'required'
         ]));
@@ -113,20 +107,6 @@ class CompanyController extends Controller
             'CompanyController@show',
             [$company->id]
         );
-        // $company = Company::findOrFail($id);
-
-        // $company->name = request('name');
-        // $company->address = request('address');
-        // $company->city = request('city');
-        // $company->prov = request('prov');
-        // $company->pc = request('pc');
-        // $company->url = request('url');
-        // $company->phone = request('phone');
-
-        // $company->save();
-
-       
-
     }
 
     /**

@@ -26,6 +26,7 @@ Auth::routes();
 Route::get('dashboard', 'DashboardController@dashboard');
 Route::get('dashboard/companies', 'DashboardController@companies');
 Route::get('dashboard/tasks', 'DashboardController@tasks');
+Route::get('dashboard', 'DashboardController@welcome');
 
 /** Companies */
 Route::resource('/dashboard/company', 'CompanyController');
@@ -38,7 +39,9 @@ Route::get('/dashboard/company/task/createtask/{id}', 'TaskController@createtask
 Route::resource('/dashboard/company/contact', 'ContactController');
 Route::get('/dashboard/company/contact/createcontact/{id}', 'ContactController@createcontact');
 
+/** Queries */
 
+Route::get('/dashboard/queryresults', 'QueryController@searchQuery');
 
 // /* API */
 // Route::resource('api/company', 'CompanyController');

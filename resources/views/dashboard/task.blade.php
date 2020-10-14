@@ -56,7 +56,7 @@
                 >
             </div>
             <div class="form-group">
-                <label for="exampleFormControlSelect1">Example select</label>
+                <label for="exampleFormControlSelect1">Status</label>
                 <select name="status" class="form-control" id="exampleFormControlSelect1">
                     <option value="0">Open</option>
                     <option value="1">Completed</option>                  

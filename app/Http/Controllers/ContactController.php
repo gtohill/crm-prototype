@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use App\Contact;
 use App\Company;
 use Illuminate\Http\Request;
@@ -46,9 +47,11 @@ class ContactController extends Controller
             $contact = new Contact(
                 [                    
                     'first_name' => request('first_name'),
-                    'last_name' => request('last_name'),
+                    'last_name' => request('last_name'),                   
+                    'phone' => request('phone'),
                     'email' => request('email'),
-                    'phone' => request('phone')
+                    'ext' => request('ext'),
+                    'title' => request('title')
                 ]
             );
 
@@ -71,11 +74,13 @@ class ContactController extends Controller
      */
     public function show($id)
     {   
-        $contact = Contact::findorfail($id);
-        $contact->company;
-        $contact->tasks;                       
-              
-        return view('dashboard.contact')->with(['contact'=>$contact]);
+        $contact =  Contact::findOrFail($id);
+        $company = Company::findOrFail($contact->company_id); //DB::table('companies')->where('id', '=', $contact->company_id)->get();
+        $opentasks = DB::table('tasks')->where('contact_id', '=', $id)->where('status', '=', 0)->orderBy('due_date', 'desc')->get();
+        $completedtasks = DB::table('tasks')->where('contact_id', '=', $id)->where('status', '=', 1)->orderBy('due_date', 'desc')->get();
+ 
+
+        return view('dashboard.contact')->with(['company'=>$company])->with(['contact'=>$contact])->with(['opentasks'=>$opentasks])->with(['completedtasks'=>$completedtasks]);
         //return response()->json($contact); 
     }
 
@@ -106,8 +111,7 @@ class ContactController extends Controller
         $contact->update(request()->validate([
             'first_name'=> 'required',
             'last_name'=> 'required',
-            'phone'=> 'required',
-            'email'=> 'required'
+            'phone'=> 'required',            
         ]));
         
         return redirect()->action(

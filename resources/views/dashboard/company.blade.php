@@ -3,6 +3,7 @@
 @section('company')
 <div class="container">
 @if($company)
+    <div class="row">
     <h3 class="display-5 text-center p-5">{{$company->name}}</h3>
     <table class="table table-bordered">    
         <tbody>
@@ -14,21 +15,7 @@
                 <th scope="row">Address</th>
                 <td>{{$company->address}}</td>
                 
-            </tr>
-            <tr>
-                <th scope="row">State/Prov</th>
-                <td colspan="2">{{$company->prov}}</td>
-                
-            </tr>
-            <tr>
-                <th scope="row">City</th>
-                <td colspan="2">{{$company->city}}</td>                
-            </tr>
-            <tr>
-                <th scope="row">PC</th>
-                <td colspan="2">{{$company->pc}}</td>
-                
-            </tr>
+            </tr>           
             <tr>
                 <th scope="row">Phone</th>
                 <td colspan="2">{{$company->phone}}</td>
@@ -40,22 +27,24 @@
             </tr>
         </tbody>
     </table>
-    @endif
-    <div class="row">      
+</div>
+@endif
+    <div class="row pt-5">      
         <div class="col-md-2">
             <a href="/dashboard/company/contact/createcontact/{{$company->id}}">Create Contact</a>
         </div>
     </div>
-    <div class="row">
-        <h4>Employees</h4>
+
+    <div class="row py-5">        
+        <h4>Contact</h4>
         <table class="table table-sm">
             <thead>
-              <tr>
-                <th scope="col">#</th>
+              <tr>                
                 <th scope="col">First Name</th>
                 <th scope="col">Last Name</th> 
                 <th scope="col">Phone</th>
                 <th scope="col">Email</th>
+                <th scope="col">View</th>
               </tr>
             </thead>
             <tbody>
@@ -69,26 +58,23 @@
                 </tr>             
                 @endforeach
             </tbody>
-          </table>
+          </table>      
+    </div>
+    
 
+    <div class="row border-top">
+            <h4>Tasks</h4>
     </div>
-    <div class="row">
-        <div class="col-md-2">
-            <h6>Open Tasks</h6>
-        </div>
-        {{-- <div class="col-md-2">
-            <a href="/dashboard/company/task/createtask/{{$company->id}}">Create Task</a>
-        </div> --}}
-    </div>
-    <div class="row pt-5">
+    <div class="row pt-2">
+        <h6>Open Tasks</h6>
         <table class="table table-sm">
             <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Due Date</th>
-                <th scope="col">Description</th> 
-                <th scope="col">View/Update</th>                
-              </tr>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Due Date</th>
+                    <th scope="col">Description</th> 
+                    <th scope="col">View/Update</th>                
+                </tr>
             </thead>
             <tbody>
                 @foreach ($opentasks as $contact)
@@ -100,18 +86,18 @@
                 </tr>             
                 @endforeach
             </tbody>
-          </table>
+        </table>
     </div>
     <div class="row pt-5">
         <h6>Completed Tasks</h6>
         <table class="table table-sm">
             <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Due Date</th>
-                <th scope="col">Description</th> 
-                               
-              </tr>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Due Date</th>
+                    <th scope="col">Description</th> 
+                    
+                </tr>
             </thead>
             <tbody>
                 @foreach ($completedtasks as $completedtask)
@@ -123,7 +109,9 @@
                 </tr>             
                 @endforeach
             </tbody>
-          </table>
+        </table>
     </div>
 </div>
+</div>
+
 @endsection

@@ -11,7 +11,9 @@ class Contact extends Model
     [
         'company_id',
         'first_name',
-        'last_name',        
+        'last_name',
+        'title',
+        'ext',
         'phone',        
         'email'        
     ];

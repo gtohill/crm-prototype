@@ -2,41 +2,27 @@
 
 @section('contact')
 <div class="container">
-@if($contact->company)
-    <h3 class="display-5 text-center p-5"><a href="/dashboard/company/{{$contact->company->id}}">{{$contact->company->name}}</a></h3>
+@if($company)
+    <h3 class="display-5 text-center p-5"><a href="/dashboard/company/{{$company->id}}">{{$company->name}}</a></h3>
     <table class="table table-bordered">    
         <tbody>
             <tr>
                 <th scope="row">Company</th>
-                <td>{{$contact->company->name}}</td>        
+                <td>{{$company->name}}</td>        
             </tr>
             <tr>
                 <th scope="row">Address</th>
-                <td>{{$contact->company->address}}</td>
+                <td>{{$company->address}}</td>
                 
-            </tr>
-            <tr>
-                <th scope="row">State/Prov</th>
-                <td colspan="2">{{$contact->company->prov}}</td>
-                
-            </tr>
-            <tr>
-                <th scope="row">City</th>
-                <td colspan="2">{{$contact->company->city}}</td>                
-            </tr>
-            <tr>
-                <th scope="row">PC</th>
-                <td colspan="2">{{$contact->company->pc}}</td>
-                
-            </tr>
+            </tr>           
             <tr>
                 <th scope="row">Phone</th>
-                <td colspan="2">{{$contact->company->phone}}</td>
+                <td colspan="2">{{$company->phone}}</td>
                 
             </tr>
             <tr>
                 <th scope="row">www</th>
-                <td colspan="2"><a href="{{$contact->company->url}}"> Visit Web Site</td>
+                <td colspan="2"><a href="{{$company->url}}" target="_blank"> Visit Web Site</td>
             </tr>
         </tbody>
     </table>
@@ -45,8 +31,7 @@
         <h4>Employee</h4>
         <table class="table table-sm">
             <thead>
-              <tr>
-                <th scope="col">#</th>
+              <tr>               
                 <th scope="col">First Name</th>
                 <th scope="col">Last Name</th> 
                 <th scope="col">Phone</th>
@@ -89,7 +74,7 @@
               </tr>
             </thead>
             <tbody>
-                @foreach ($contact->tasks as $task)
+                @foreach ($opentasks as $task)
                 <tr>
                     <td>{{$task->id}}</td>   
                     <td>{{$task->due_date}}</td>
@@ -100,7 +85,7 @@
             </tbody>
           </table>
     </div>
-    {{-- <div class="row pt-5">
+    <div class="row pt-5">
         <h6>Completed Tasks</h6>
         <table class="table table-sm">
             <thead>
@@ -112,16 +97,16 @@
               </tr>
             </thead>
             <tbody>
-                @foreach ($contact->completedtasks as $contact->completedtask)
+                @foreach ($completedtasks as $completedtask)
                 <tr>
-                    <td>{{$contact->completedtask->id}}</td>   
-                    <td>{{$contact->completedtask->due_date}}</td>
-                    <td>{{$contact->completedtask->description}}</td>
+                    <td>{{$completedtask->id}}</td>   
+                    <td>{{$completedtask->due_date}}</td>
+                    <td>{{$completedtask->description}}</td>
                     
                 </tr>             
                 @endforeach
             </tbody>
           </table>
-    </div> --}}
+    </div>
 </div>
 @endsection

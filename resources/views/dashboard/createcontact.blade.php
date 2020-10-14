@@ -17,21 +17,21 @@
                     <label>Last Name</label>
                     <input type="text" name="last_name" class="form-control" placeholder="Enter Last Name">
                 </div>
-                {{-- <div class="form-group">
+               <div class="form-group">
                     <label>Title</label>
-                    <input type="text" name="title" class="form-control" placeholder="Enter Title">
-                </div> --}}
+                    <input type="text" name="title" class="form-control" placeholder="Enter Title" value="">
+                </div>
                 <div class="form-group">
                     <label>Phone</label>
-                    <input type="phone" name="phone" class="form-control" placeholder="Enter Phone">
+                <input type="phone" name="phone" class="form-control" placeholder="{{$company->phone}}" value="{{$company->phone}}">
                 </div>
-                {{-- <div class="form-group">
+                <div class="form-group">
                     <label for="">Ext.</label>
-                    <input type="text" name="ext" class="form-control" id="" placeholder="Enter Extension">
-                </div> --}}
+                    <input type="text" name="ext" class="form-control" id="" placeholder="Enter Extension" value="">
+                </div>
                 <div class="form-group">
                     <label for="">Email</label>
-                    <input type="email" name="email" class="form-control" id="" placeholder="Enter Email">
+                    <input type="email" name="email" class="form-control" id="" placeholder="Enter Email" value="">
                 </div>
               
                 <div class="form-group">
