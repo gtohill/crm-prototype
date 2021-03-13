@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Company;
 use App\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -41,9 +42,13 @@ class DashboardController extends Controller
      */
     public function tasks()
     {
-
-        $tasks = Task::all()->where('status', '=', 0)->sortBy('due_date');
-
-        return view('dashboard.tasks')->with(['tasks' => $tasks]);
+        
+        $task = DB::table('tasks')
+        ->select('tasks.id','tasks.due_date','tasks.status', 'tasks.description', 'contacts.first_name', 'contacts.last_name')
+        ->join('contacts','contacts.id','=','tasks.contact_id')
+        ->where('tasks.status', '=', 0)
+        ->get();
+        
+        return view('dashboard.tasks')->with(['tasks' => $task]);
     }
 }

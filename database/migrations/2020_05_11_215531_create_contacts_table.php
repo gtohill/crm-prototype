@@ -18,10 +18,10 @@ class CreateContactsTable extends Migration
             $table->bigInteger('company_id');
             $table->string('first_name');            
             $table->string('last_name');
-            $table->string('title')->nullable(true)->change();
+            $table->string('title')->nullable(true);
             $table->string('phone');
-            $table->string('ext')->nullable(true)->change();
-            $table->string('email')->nullable(true)->change();
+            $table->string('ext')->nullable(true);
+            $table->string('email')->nullable(true);
             $table->timestamps();
         });
     }

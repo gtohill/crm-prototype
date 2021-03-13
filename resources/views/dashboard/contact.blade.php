@@ -4,7 +4,7 @@
 <div class="container">
 @if($company)
     <h3 class="display-5 text-center p-5"><a href="/dashboard/company/{{$company->id}}">{{$company->name}}</a></h3>
-    <table class="table table-bordered">    
+    <table class="table table-bordered" style="border-top:rgb(175, 152, 18) solid 5px">    
         <tbody>
             <tr>
                 <th scope="row">Company</th>
@@ -27,9 +27,9 @@
         </tbody>
     </table>
     @endif   
-    <div class="row">
+    <div class="row pt-5">
         <h4>Employee</h4>
-        <table class="table table-sm">
+        <table class="table table-sm" style="border-top:rgb(175, 152, 18) solid 5px">
             <thead>
               <tr>               
                 <th scope="col">First Name</th>
@@ -51,20 +51,24 @@
 
     </div>
     <div class="row pt-5">
-        <div class="col-md-2">
-            <h3>Tasks</h3>
-        </div>
-        <div class="col-md-2">
-            <a href="/dashboard/company/task/createtask/{{$contact->id}}">Create Task</a>
-        </div>
+        <div class="col-md-5">
+            <h3>
+                Tasks
+                <span style="font-size: .75rem;">
+                    <a href="/dashboard/company/task/createtask/{{$contact->id}}">
+                        <i style="font-size: 12px;" class="fa fa-plus" aria-hidden="true"></i>
+                    Create Task </a></span>
+
+            </h3>
+        </div>       
     </div>
     <div class="row pt-3">        
         <div class="col-md-2 ">
             <h6>Open Tasks</h6>
         </div>
     </div>
-    <div class="row pt-5">
-        <table class="table table-sm">
+    <div class="row pt-2">
+        <table class="table table-sm" style="border-top:rgb(175, 152, 18) solid 5px">
             <thead>
               <tr>
                 <th scope="col">#</th>
@@ -87,7 +91,7 @@
     </div>
     <div class="row pt-5">
         <h6>Completed Tasks</h6>
-        <table class="table table-sm">
+        <table class="table table-sm" style="border-top:rgb(175, 152, 18) solid 5px">
             <thead>
               <tr>
                 <th scope="col">#</th>

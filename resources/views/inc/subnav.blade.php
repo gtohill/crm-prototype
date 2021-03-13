@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">    
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="border-left: 3px solid rgb(175, 152, 18); border-bottom: 3px solid rgb(175, 152, 18); border-right: 3px solid rgb(175, 152, 18); background-image: linear-gradient(to right, #b9dee9, #9ec6d6);">    
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>

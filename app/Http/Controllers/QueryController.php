@@ -25,7 +25,10 @@ class QueryController extends Controller
                 ->get();
 
             $contacts = DB::table('contacts')
-                ->where('first_name', 'like', request('find') . '%')
+                ->select('contacts.id', 'contacts.first_name', 'contacts.last_name', 'contacts.phone', 'companies.name')  
+                ->join('companies', 'companies.id', '=', 'contacts.company_id')
+                ->where('contacts.first_name', 'like', request('find') . '%')
+                ->orWhere('contacts.last_name', 'like', request('find'). "%")
                 ->get();
 
             return view('dashboard.queryresults')->with(['companies' => $companies])->with(['contacts' => $contacts]);

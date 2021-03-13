@@ -8,7 +8,7 @@ class CreateCompaniesTable extends Migration
 {
     /**
      * Run the migrations.
-     *
+     *     
      * @return void
      */
     public function up()
@@ -17,6 +17,9 @@ class CreateCompaniesTable extends Migration
             $table->id();            
             $table->string('name');            
             $table->string('address');
+            $table->string('city');
+            $table->string('prov');
+            $table->string('pc');              
             $table->string('url');            
             $table->string('phone');            
             $table->timestamps();

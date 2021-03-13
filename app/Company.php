@@ -11,7 +11,11 @@ class Company extends Model
         'name',
         'address',        
         'url',
-        'phone'                       
+        'city',
+        'prov',
+        'pc',        
+        'phone',        
+
     ];
     
     public function contacts(){

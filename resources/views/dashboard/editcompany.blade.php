@@ -2,7 +2,9 @@
 @section('edit_company')
 <div class="container">
     <div class="row">
-        <h3 class="p-3 text-center"><a href="/dashboard/company/{{$company->id}}">{{$company->name}}</a></h3>
+        <div class="col-md-12">
+            <h3 class="pt-5 text-center"><span style="font-size:.75em"><i>edit</i> </span><a href="/dashboard/company/{{$company->id}}">{{$company->name}}</a></h3>
+        </div>
     </div>
     
     @if($message ?? '')
@@ -12,6 +14,7 @@
     @endif
 
     <div class="row">
+        <div class="col-md-2"></div>
         <div class="col-md-8">
             <form action="/dashboard/company/{{$company->id}}" method="POST">
                 @method('PUT')
@@ -41,12 +44,12 @@
                     <input type="text" name="phone" class="form-control" id="" value="{{$company->phone}}">
                 </div>
                 <div class="form-group">
-                    <label for="">www</label>
+                    <label for="">Website</label>
                     <input type="text" name="url" class="form-control" id="" value="{{$company->url}}">
                 </div> 
                 <div class="form-group">
 
-                    <input type="submit" class="btn btn-primary" value="Update Company">
+                    <input type="submit" class="btn" style="background-color:#2992b0; color:white" value="Update Company">
                 </div>                
             </form>
         </div>

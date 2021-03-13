@@ -3,6 +3,8 @@
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class CRMSeeder extends Seeder
 {
@@ -13,19 +15,29 @@ class CRMSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        for ($i = 0; $i < 4; $i++) {
+        DB::table('users')->insert([
+            'name' => 'demo',
+            'email' => 'demo@localhost.com',
+            'password' => Hash::make('PD153328@!'),
+        ]);
+        
+
+        // create companies
+        for ($i = 0; $i < 10; $i++) {
 
             $company = new App\Company();
 
             $company->name = $faker->company;
             $company->address = $faker->streetAddress;
-            $company->url = $faker->url;
+            $company->url = $faker->domainName;
             $company->city = $faker->city;
             $company->prov = $faker->state;
             $company->pc = $faker->postcode;
             $company->phone = $faker->tollFreePhoneNumber;
             $company->save();
-            for ($j = 0; $j < 2; $j++) {
+            
+            // create contact for each company
+            for ($j = 0; $j < mt_rand(2, 8); $j++) {
                 $contact = new App\Contact();
 
                 $contact->first_name = $faker->firstName;
@@ -34,7 +46,8 @@ class CRMSeeder extends Seeder
                 $contact->email = $faker->email;
                 $company->contacts()->save($contact);                
 
-                for ($k = 0; $k < 2; $k++) {
+                // create tasks for each contact
+                for ($k = 0; $k < mt_rand(2, 6); $k++) {
                     if ($k == 0) {
                         $task = new App\Task();
     
