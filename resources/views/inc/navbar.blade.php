@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-light" style="background-image: linear-gradient(to right, #2992b0, #56b2d6); border-bottom:rgb(175, 152, 18) solid 5px;">
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
-            Pivotal CRM
+            <img style="height:80px" src="{{url('/images/pivotal_crm_logo.png')}}" alt="Pivotal CRMs" >
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>

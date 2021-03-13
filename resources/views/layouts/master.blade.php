@@ -4,15 +4,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">    
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>@yield('title', 'Pivotal Contact Management')</title>
-    <script
-            src="https://kit.fontawesome.com/3043c0bd14.js"
-            crossorigin="anonymous"
-        ></script>
+    <script src="https://kit.fontawesome.com/3043c0bd14.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <style>     
+        /* Place text in the middle of the image */
+        .hero-text {
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); 
+            background-color:rgba(0, 0, 0, 0.3);
+            height:inherit;
+            width:inherit;                        
+        }
+        .hero_nueph{            
+            box-shadow: 5px 5px 10px #818085,
+                -5px 0px 10px #e2e4e7;
+            border-radius: 20px;
+            background-color: #EDE9FE;
+            background-image: linear-gradient(to bottom right, #D1D5DB, #C4B5FD);
+    
+        }
+    </style>
 </head>
 
 <body style="font-family: Montserrat">
@@ -22,6 +40,7 @@
         @include('inc.messages')
         @yield('content')
     </div>
+    @include('generic.footer')
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

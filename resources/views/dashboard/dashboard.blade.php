@@ -4,8 +4,9 @@
 <div class="container">
 @include('inc.subnav')
 </div>
-<div class="container">
-    <div class="row">
+<div class="container" style="height:100vh">
+    
+    <div class="row" >
         @yield('dashhome')
         @yield('companies')
         @yield('tasks')
