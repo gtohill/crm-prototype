@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -43,9 +47,11 @@ class ContactController extends Controller
         if(request('company_id')){            
             // get company
             $company = Company::findorfail(request('company_id'));
+            $user_id = Auth()->user()->id;
             // create new contact
             $contact = new Contact(
-                [                    
+                [         
+                    'user_id' => $user_id,           
                     'first_name' => request('first_name'),
                     'last_name' => request('last_name'),                   
                     'phone' => request('phone'),

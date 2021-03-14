@@ -21,8 +21,8 @@
                         <td colspan="2">{{$company->phone}}</td>
                     </tr>
                     <tr>
-                        <th scope="row">www</th>
-                        <td colspan="2"><a href="{{$company->url}}" target="_blank"> Visit Web Site</td>
+                        <th scope="row">Website</th>
+                        <td colspan="2"><a href="http://{{$company->url}}" target="_blank"> Visit Web Site</td>
                     </tr>
                 </tbody>
             </table>
@@ -60,7 +60,7 @@
 
 
     <div class="row border-top">
-        <h4>Tasks</h4>
+        <h4>Tasks </span></h4>
     </div>
     <div class="row pt-2">
         <h6>Open Tasks</h6>

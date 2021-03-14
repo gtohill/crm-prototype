@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\DB;
 
 class TaskController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -57,8 +61,9 @@ class TaskController extends Controller
     public function store(Request $request)
     {
         $contact = Contact::findorfail(request('contact_id'));
-
+        
         $task = new Task([
+            'user_id' =>  auth()->user()->id,
             'due_date' => request('due_date'),
             'description' => request('description'),           
             'status' => request('status')
@@ -100,7 +105,7 @@ class TaskController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Task $task)
-    {
+    {   
         $task->save();
         return response()->json($task);
         
@@ -115,7 +120,6 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         $task = Task::findOrFail($id);
         $task->due_date = request('due_date');
         $task->description = request('description');
@@ -126,7 +130,13 @@ class TaskController extends Controller
         $updated_task->contact;
         $updated_task->company;
 
-        return view('dashboard.task')->with(['item'=>$updated_task])->with(['message'=>'Success! Task Completed.']);
+        $message = '';
+        if($updated_task->status == 0){
+            $message = "Success! Task Updated";
+        }else{
+            $message = 'Success! Task Completed';
+        }
+        return view('dashboard.task')->with(['item'=>$updated_task])->with(['message'=> $message]);
     }
 
     /**

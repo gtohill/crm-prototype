@@ -53,7 +53,7 @@ class CRMSeeder extends Seeder
                         $task = new App\Task();
     
                         $task->user_id = 1;
-                        $task->due_date = $faker->dateTimeBetween($startDate = 'now', $endDate = '1 years', $timezone = 'UTC');
+                        $task->due_date = $faker->dateTimeBetween($startDate = 'now', $endDate = '1 years', $timezone = 'America/New_York');
                         $task->description = $faker->sentence($nbWords = 6, $variableNbWords = true);
                         $task->status = false;
                         
@@ -63,7 +63,7 @@ class CRMSeeder extends Seeder
                     $task = new App\Task();
 
                     $task->user_id = 1;
-                    $task->due_date = $faker->dateTimeBetween($startDate = '-1 years', $endDate = 'now', $timezone = 'UTC');
+                    $task->due_date = $faker->dateTimeBetween($startDate = '-1 years', $endDate = 'now', $timezone = 'America/New_York');
                     $task->description = $faker->sentence($nbWords = 6, $variableNbWords = true);
                     
                     $company->tasks()->save($task);

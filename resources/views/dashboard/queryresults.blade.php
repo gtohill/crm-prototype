@@ -35,9 +35,9 @@
                     @endforeach
                 </tbody>
             </table>
-            @endif
+           
             
-            @if(count($contacts) > 0)
+            @elseif(count($contacts) > 0)
             <tbody style="border-top:rgb(175, 152, 18) solid 5px">                
                 @foreach($contacts as $contact)
                 <tr>                    
@@ -49,9 +49,9 @@
                 @endforeach
             </tbody>
         </table>
-        @else
-            <h5>Nothing matched your search criteria</h5>
-        @endif
+            @else
+                <h5>Nothing matched your search criteria</h5>
+            @endif
                            
         </div>
     </div>

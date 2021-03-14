@@ -1,9 +1,9 @@
 @extends('dashboard.dashboard')
 
 @section('tasks')
-<div class="container" >
+<div class="container" style="height: 100vh">
     <div class="row" >
-        <div class="col-md-12" >
+        <div class="col-md-12">
             <h3 class="pt-5 text-center">All Active Tasks</h3>
 
             <table class="table" style="border-top:rgb(175, 152, 18) solid 5px">

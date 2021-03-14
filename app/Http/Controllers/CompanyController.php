@@ -10,6 +10,10 @@ use Illuminate\Http\Request;
 
 class CompanyController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of all companies the resource.
      *
@@ -30,14 +34,6 @@ class CompanyController extends Controller
             return view('companies')->with(['companies' => $companies ]);            
             
         }
-        else{
-
-            // if user is not logged in.
-            return view('errors.loginrequired');
-        }       
-       
-        
-
     }
 
     /**
@@ -59,10 +55,15 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
+        $user_id = Auth()->user()->id;
         $company = new Company(
             [                    
+                'user_id' => $user_id,
                 'name' => request('name'),
-                'address' => request('address'),                
+                'address' => request('address'),
+                'city' => request('city'),
+                'pc' => request('pc'),
+                'prov' => request('prov'),
                 'phone' => request('phone'),
                 'url' => request('url'),
             ]
@@ -82,6 +83,7 @@ class CompanyController extends Controller
      */
     public function show($id)
     {
+        
         $company = Company::findorfail($id);
         $contacts =  DB::table('contacts')->where('company_id', '=', $id)->get();
         $opentasks = DB::table('tasks')->where('company_id', '=', $id)->where('status', '=', 0)->get();

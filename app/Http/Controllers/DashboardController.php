@@ -49,14 +49,14 @@ class DashboardController extends Controller
     /**
      * get all tasks belonging to user
      */
-    public function tasks()    {
+    public function tasks(){
 
         if(isset(auth()->user()->id)){
-            $active_task = DB::table('users')
+            $user_id = auth()->user()->id;
+            $active_task = DB::table('tasks')
             ->select('tasks.id', 'tasks.due_date', 'tasks.status', 'tasks.description', 'contacts.first_name', 'contacts.last_name')
-            ->join('tasks', 'users.id', '=', 'tasks.user_id')
             ->join('contacts', 'contacts.id', '=', 'tasks.contact_id')
-            ->where('tasks.status', '=', 0)
+            ->where([['tasks.status', '=', 0], ['tasks.user_id', '=', $user_id]])
             ->orderBy('tasks.due_date', 'asc')
             ->get();
             

@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\DB;
 
 class QueryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Query a specific or multiple resources in storage.
      *

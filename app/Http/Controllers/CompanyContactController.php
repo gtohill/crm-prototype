@@ -10,6 +10,10 @@ use Illuminate\Http\Request;
 
 class CompanyContactController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * API response with company details, all contacts and all open and closed tasks
      * @param  int  $id
