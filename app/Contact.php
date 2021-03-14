@@ -9,6 +9,7 @@ class Contact extends Model
     //
     protected $fillable = 
     [
+        'user_id',
         'company_id',
         'first_name',
         'last_name',
@@ -18,6 +19,10 @@ class Contact extends Model
         'email'        
     ];
     
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+    
     public function company(){
         return $this->belongsTo(Company::class);
     }
@@ -25,4 +30,6 @@ class Contact extends Model
     public function tasks(){
         return $this->hasMany(Task::class);
     }
+
+
 }

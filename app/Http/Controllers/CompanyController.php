@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use App\Company;
 use App\Contact;
+use App\User;
 use Illuminate\Http\Request;
 
 class CompanyController extends Controller
@@ -16,10 +17,26 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $companies = Company::all();
+        if(isset(auth()->user()->id)){
+            
+            // user id
+            $user_id = auth()->user()->id;
 
-        return view('companies')->with(['companies' => $companies ]);
-        //return response()->json($companies);
+            // get user details
+            $user = User::findorfail($user_id);
+            $companies = $user->companies;
+          
+            // $companies = Company::all();
+            return view('companies')->with(['companies' => $companies ]);            
+            
+        }
+        else{
+
+            // if user is not logged in.
+            return view('errors.loginrequired');
+        }       
+       
+        
 
     }
 

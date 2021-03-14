@@ -40,4 +40,12 @@ class User extends Authenticatable
     public function companies(){
         return $this->hasMany(Company::class);
     }
+
+    public function tasks(){
+        return $this->hasMany(Task::class);
+    }
+
+    public function contacts(){
+        return $this->hasMany(Contact::class);
+    }
 }

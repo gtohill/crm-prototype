@@ -15,6 +15,7 @@ class CreateTasksTable extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('user_id');
             $table->bigInteger('contact_id')->default(0);
             $table->bigInteger('company_id')->default(0);
             $table->date('due_date');

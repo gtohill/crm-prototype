@@ -15,7 +15,7 @@ class CRMSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        DB::table('users')->insert([
+        $users = DB::table('users')->insert([
             'name' => 'demo',
             'email' => 'demo@localhost.com',
             'password' => Hash::make('PD153328@!'),
@@ -26,7 +26,7 @@ class CRMSeeder extends Seeder
         for ($i = 0; $i < 10; $i++) {
 
             $company = new App\Company();
-
+            $company->user_id = 1;
             $company->name = $faker->company;
             $company->address = $faker->streetAddress;
             $company->url = $faker->domainName;
@@ -40,6 +40,7 @@ class CRMSeeder extends Seeder
             for ($j = 0; $j < mt_rand(2, 8); $j++) {
                 $contact = new App\Contact();
 
+                $contact->user_id = 1;
                 $contact->first_name = $faker->firstName;
                 $contact->last_name = $faker->lastName;
                 $contact->phone = $faker->tollFreePhoneNumber;
@@ -51,6 +52,7 @@ class CRMSeeder extends Seeder
                     if ($k == 0) {
                         $task = new App\Task();
     
+                        $task->user_id = 1;
                         $task->due_date = $faker->dateTimeBetween($startDate = 'now', $endDate = '1 years', $timezone = 'UTC');
                         $task->description = $faker->sentence($nbWords = 6, $variableNbWords = true);
                         $task->status = false;
@@ -60,6 +62,7 @@ class CRMSeeder extends Seeder
                     }
                     $task = new App\Task();
 
+                    $task->user_id = 1;
                     $task->due_date = $faker->dateTimeBetween($startDate = '-1 years', $endDate = 'now', $timezone = 'UTC');
                     $task->description = $faker->sentence($nbWords = 6, $variableNbWords = true);
                     

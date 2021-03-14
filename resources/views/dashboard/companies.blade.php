@@ -20,7 +20,7 @@
                   </tr>
                 </thead>
                 <tbody style="border-top:rgb(175, 152, 18) solid 5px">
-                    @foreach($companies as $company)
+                    @foreach($companies->companies as $company)
                   <tr>                    
                     <td><a href="/dashboard/company/{{$company->id}}">{{$company->name}}</a></td>
                     <td>{{$company->address}}</td>
