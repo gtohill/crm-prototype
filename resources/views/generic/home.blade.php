@@ -21,9 +21,14 @@
           <div class="col-md-12 border-top">
             <div style="height:50px">        
             </div>
-            <h3 class="text-center">Thank you for visiting Pivotal CRMs</h3>
-            <h5>Since you're here, take a few minutes try our no obligation demonstration of our easy to use Client Relationship Management System. Please <a href="mailto:info@pivotaldesign.ca">Send Us An Email</a> and we will provide a user name and password.</h5>
-            <h5>Doing so will save you time and give you access to pre-built simulated CRMs. We fill the database with pseudo companies, contacts, and tasks. Please  make any changes you like.</h5>             
+            <h3 class="text-center">Pivotal CRMs:</h3>
+            <h3 class="text-center">Perfect Solution for Sole-Proprietors and Small Business Owners.</h3>
+            <div style="height:20px"></div>            
+            <h5>
+               If you don't want to invest significant time and financial resources in a CRMs, then we may have the solution for you.
+            </h5>
+            <h5>So, since you're here, take a few minutes try our no obligation demonstration for yourself. Please <a href="mailto:info@pivotaldesign.ca">Send Us An Email</a> and we will provide a user name and password.</h5>
+            <h5>You'll have complete access to pre-built simulated CRMs environment with pseudo companies, contacts, and tasks. Please make any changes you like.</h5>             
             <h4>Please note we <b>RESET</b> the CRM every Thursday at ~ midnight (11:50pm).</h4>
           </div>
         </div>
